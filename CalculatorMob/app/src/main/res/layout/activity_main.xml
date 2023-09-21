@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/divi"
@@ -9,40 +9,80 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/math_operation"
-        android:layout_width="match_parent"
-        android:layout_height="80sp"
-        android:ellipsize="start"
-        android:gravity="end"
-        android:singleLine="true"
-        android:textColor="@color/white"
-        android:textSize="40sp" />
-
-    <TextView
-        android:id="@+id/symbol_text"
-        android:layout_width="match_parent"
-        android:layout_height="100sp"
-        android:ellipsize="end"
-        android:gravity="end"
-        android:singleLine="true"
-        android:textColor="@color/white"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/result_text"
-        android:layout_width="match_parent"
-        android:layout_height="100sp"
-        android:ellipsize="end"
-        android:gravity="end"
-        android:singleLine="true"
-        android:textColor="@color/white"
-        android:textSize="30sp" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/input_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:ems="10"
+            android:focusableInTouchMode="false"
+            android:gravity="end"
+            android:inputType="text"
+            android:singleLine="true"
+            tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/symbol"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/input_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:ems="10"
+            android:focusableInTouchMode="false"
+            android:gravity="end"
+            android:inputType="text"
+            android:singleLine="true"
+            tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/answer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_marginTop="92dp"
+        android:ems="10"
+        android:focusableInTouchMode="false"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="459dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextSizeCheck">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,23 +90,25 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/clear_btn"
+            <Button
+                android:id="@+id/btn_clear"
                 style="@style/ActionButton"
-                android:text="AC" />
+                android:text="@string/ac"
+                app:cornerRadius="5dp"
+                tools:ignore="VisualLintButtonSize" />
 
-            <TextView
-                android:id="@+id/back_btn"
+            <ImageButton
+                android:id="@+id/back"
                 style="@style/ActionButton"
-                android:text="BACK"
+                app:srcCompat="@android:drawable/ic_input_delete"
+                tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
-                />
-
-
-            <TextView
-                android:id="@+id/division_btn"
+            <Button
+                android:id="@+id/btn_divide"
                 style="@style/ActionButton"
-                android:text="/" />
+                android:text="@string/devide"
+                app:cornerRadius="5dp"
+                tools:ignore="VisualLintButtonSize" />
         </LinearLayout>
 
         <LinearLayout
@@ -75,25 +117,34 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <TextView
+            <Button
                 android:id="@+id/btn_7"
                 style="@style/NumberButton"
-                android:text="7" />
+                android:text="@string/_7"
+                app:cornerRadius="5dp"
+                tools:ignore="VisualLintButtonSize" />
 
-            <TextView
+            <Button
                 android:id="@+id/btn_8"
                 style="@style/NumberButton"
-                android:text="8" />
+                android:text="@string/_8"
+                app:cornerRadius="5dp"
+                tools:ignore="VisualLintButtonSize" />
 
-            <TextView
+            <Button
                 android:id="@+id/btn_9"
                 style="@style/NumberButton"
-                android:text="9" />
+                android:text="@string/_9"
+                app:cornerRadius="5dp"
+                tools:ignore="VisualLintButtonSize" />
 
-            <TextView
-                android:id="@+id/mult_btn"
+            <Button
+                android:id="@+id/btn_mult"
                 style="@style/ActionButton"
-                android:text="*" />
+                android:text="@string/mult"
+                app:cornerRadius="5dp"
+                tools:ignore="VisualLintButtonSize" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -102,25 +153,33 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <TextView
+            <Button
                 android:id="@+id/btn_4"
                 style="@style/NumberButton"
-                android:text="4" />
+                android:text="@string/_4"
+                app:cornerRadius="5dp"
+                tools:ignore="VisualLintButtonSize" />
 
-            <TextView
+            <Button
                 android:id="@+id/btn_5"
                 style="@style/NumberButton"
-                android:text="5" />
+                android:text="@string/_5"
+                app:cornerRadius="5dp"
+                tools:ignore="VisualLintButtonSize" />
 
-            <TextView
+            <Button
                 android:id="@+id/btn_6"
                 style="@style/NumberButton"
-                android:text="6" />
+                android:text="@string/_6"
+                app:cornerRadius="5dp"
+                tools:ignore="VisualLintButtonSize" />
 
-            <TextView
-                android:id="@+id/plus_btn"
+            <Button
+                android:id="@+id/btn_plus"
                 style="@style/ActionButton"
-                android:text="+" />
+                android:text="@string/plus"
+                app:cornerRadius="5dp"
+                tools:ignore="VisualLintButtonSize" />
         </LinearLayout>
 
         <LinearLayout
@@ -129,25 +188,33 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <TextView
+            <Button
                 android:id="@+id/btn_1"
                 style="@style/NumberButton"
-                android:text="1" />
+                android:text="@string/_1"
+                app:cornerRadius="5dp"
+                tools:ignore="VisualLintButtonSize" />
 
-            <TextView
+            <Button
                 android:id="@+id/btn_2"
                 style="@style/NumberButton"
-                android:text="2" />
+                android:text="@string/_2"
+                app:cornerRadius="5dp"
+                tools:ignore="VisualLintButtonSize" />
 
-            <TextView
+            <Button
                 android:id="@+id/btn_3"
                 style="@style/NumberButton"
-                android:text="3" />
+                android:text="@string/_3"
+                app:cornerRadius="5dp"
+                tools:ignore="VisualLintButtonSize" />
 
-            <TextView
-                android:id="@+id/minus_btn"
+            <Button
+                android:id="@+id/btn_minus"
                 style="@style/ActionButton"
-                android:text="-" />
+                android:text="@string/minus"
+                app:cornerRadius="5dp"
+                tools:ignore="VisualLintButtonSize" />
         </LinearLayout>
 
         <LinearLayout
@@ -156,23 +223,27 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <TextView
+            <Button
                 android:id="@+id/btn_0"
                 style="@style/NumberButton"
-                android:text="0" />
+                android:text="@string/_0"
+                app:cornerRadius="5dp"
+                tools:ignore="VisualLintButtonSize" />
 
-            <TextView
+            <Button
                 android:id="@+id/dot_btn"
                 style="@style/NumberButton"
-                android:text="." />
+                android:text="@string/dot"
+                app:cornerRadius="5dp" />
 
 
-
-            <TextView
+            <Button
                 android:id="@+id/equal_btn"
                 style="@style/ActionButton"
-                android:text="=" />
+                android:backgroundTint="#a34e4e"
+                android:text="@string/equal"
+                app:cornerRadius="5dp" />
         </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
