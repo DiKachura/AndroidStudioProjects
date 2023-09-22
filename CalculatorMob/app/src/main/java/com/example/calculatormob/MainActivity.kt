@@ -139,21 +139,37 @@ class MainActivity : AppCompatActivity() {
 
         btn_plus.setOnClickListener{
             setTextFieldsSym("+")
+            if (answer.text.toString().isNotEmpty()){
+                input_1.setText(answer.text)
+                answer.text=""
+            }
             inputText(input_2)
             back(input_2)
         }
         btn_minus.setOnClickListener{
             setTextFieldsSym("-")
+            if (answer.text.toString().isNotEmpty()){
+                input_1.setText(answer.text)
+                answer.text=""
+            }
             inputText(input_2)
             back(input_2)
         }
         btn_mult.setOnClickListener{
             setTextFieldsSym("*")
+            if (answer.text.toString().isNotEmpty()){
+                input_1.setText(answer.text)
+                answer.text=""
+            }
             inputText(input_2)
             back(input_2)
         }
         btn_divide.setOnClickListener{
             setTextFieldsSym("/")
+            if (answer.text.toString().isNotEmpty()){
+                input_1.setText(answer.text)
+                answer.text=""
+            }
             inputText(input_2)
             back(input_2)
         }
