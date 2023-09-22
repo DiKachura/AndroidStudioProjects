@@ -1,4 +1,4 @@
-package com.example.calculatormob
+package com.example.calculator
 
 import android.os.Bundle
 import android.view.View
@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.calculator.R
 
 class MainActivity : AppCompatActivity() {
     private lateinit var btn_0 : Button
@@ -51,15 +52,49 @@ class MainActivity : AppCompatActivity() {
         dot_btn.setOnClickListener(cl)
 
     }
-    fun calculateResult(operation: String): Double{
-        return when(operation){
+
+    fun back(input: EditText){
+
+        back.setOnClickListener {
+            var str: String = input.getText().toString().trim()
+
+            if (str.length != 0) {
+                str = str.substring(0, str.length - 1)
+                input.setText(str)
+            }
+        }
+    }
+
+    fun setTextFieldsSym(str: String) {
+        symbol = findViewById(R.id.symbol)
+        if (input_2.getText().toString().trim().isNotEmpty()) {
+            input_1.setText(calculateResult(symbol.text.toString()).toString())
+            input_2.setText("")
+        }
+        symbol.text = str
+    }
+
+    fun calculateResult(operation: String): Double {
+        return when (operation) {
             "+" -> input_1.text.toString().toDouble() + input_2.text.toString().toDouble()
             "-" -> input_1.text.toString().toDouble() - input_2.text.toString().toDouble()
             "*" -> input_1.text.toString().toDouble() * input_2.text.toString().toDouble()
-            "/" -> input_1.text.toString().toDouble() / input_2.text.toString().toDouble()
-            else -> {0.0}
+            "/" -> {
+                if (input_2.text.toString().toDouble() != 0.0) {
+                    input_1.text.toString().toDouble() / input_2.text.toString().toDouble()
+                } else {
+                    throw ArithmeticException("Division by 0")
+                }
+            }
+
+            else -> {
+                0.0
+            }
+
         }
     }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -90,12 +125,8 @@ class MainActivity : AppCompatActivity() {
 
         input_1.setOnClickListener {
             inputText(input_1)
+            back(input_1)
         }
-
-        input_2.setOnClickListener{
-            inputText(input_2)
-        }
-
 
         btn_clear.setOnClickListener {
             input_1.text.clear()
@@ -104,38 +135,35 @@ class MainActivity : AppCompatActivity() {
             symbol.text = ""
         }
 
-        fun setTextFieldsSym(str: String) {
-            symbol = findViewById(R.id.symbol)
-            symbol.text = str
-            input_2.requestFocus()
-        }
+
 
         btn_plus.setOnClickListener{
             setTextFieldsSym("+")
+            inputText(input_2)
+            back(input_2)
         }
         btn_minus.setOnClickListener{
             setTextFieldsSym("-")
+            inputText(input_2)
+            back(input_2)
         }
         btn_mult.setOnClickListener{
             setTextFieldsSym("*")
+            inputText(input_2)
+            back(input_2)
         }
         btn_divide.setOnClickListener{
             setTextFieldsSym("/")
-        }
-
-        back.setOnClickListener {
-            var str: String = input_1.getText().toString().trim()
-
-            if (str.length != 0) {
-                str = str.substring(0, str.length - 1)
-                input_1.setText(str)
-            }
+            inputText(input_2)
+            back(input_2)
         }
 
         equal_btn.setOnClickListener{
             answer.text = calculateResult(symbol.text.toString()).toString()
+            input_1.text.clear()
+            input_2.text.clear()
+            symbol.text = ""
         }
-
 
     }
 }
