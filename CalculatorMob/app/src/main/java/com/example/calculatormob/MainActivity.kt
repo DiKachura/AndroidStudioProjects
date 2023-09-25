@@ -1,4 +1,4 @@
-package com.example.calculator
+package com.example.calculatormob
 
 import android.os.Bundle
 import android.view.View
@@ -6,8 +6,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.calculator.R
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var btn_0 : Button
@@ -74,21 +75,43 @@ class MainActivity : AppCompatActivity() {
         symbol.text = str
     }
 
-    fun calculateResult(operation: String): Double {
+    fun calculateResult(operation: String): Any {
         return when (operation) {
-            "+" -> input_1.text.toString().toDouble() + input_2.text.toString().toDouble()
-            "-" -> input_1.text.toString().toDouble() - input_2.text.toString().toDouble()
-            "*" -> input_1.text.toString().toDouble() * input_2.text.toString().toDouble()
+            "+" -> {
+                if((input_1.text.toString().toDouble() + input_2.text.toString().toDouble()).toString().contains(".0", true))
+                    input_1.text.toString().toInt() + input_2.text.toString().toInt()
+                else
+                    input_1.text.toString().toDouble() + input_2.text.toString().toDouble()
+            }
+            "-" ->{
+                if((input_1.text.toString().toDouble() - input_2.text.toString().toDouble()).toString().contains(".0", true))
+                    input_1.text.toString().toInt() - input_2.text.toString().toInt()
+                else
+                    input_1.text.toString().toDouble() - input_2.text.toString().toDouble()
+            }
+            "*" ->{
+                if((input_1.text.toString().toDouble() * input_2.text.toString().toDouble()).toString().contains(".0", true))
+                    input_1.text.toString().toInt() * input_2.text.toString().toInt()
+                else
+                    input_1.text.toString().toDouble() * input_2.text.toString().toDouble()
+            }
             "/" -> {
                 if (input_2.text.toString().toDouble() != 0.0) {
-                    input_1.text.toString().toDouble() / input_2.text.toString().toDouble()
+                    if((input_1.text.toString().toDouble() / input_2.text.toString().toDouble()).toString().contains(".0", true))
+                        input_1.text.toString().toInt() / input_2.text.toString().toInt()
+                    else
+                        input_1.text.toString().toDouble() / input_2.text.toString().toDouble()
                 } else {
+                    input_1.text.clear()
+                    input_2.text.clear()
+                    answer.text = ""
+                    symbol.text = ""
                     throw ArithmeticException("Division by 0")
                 }
             }
 
             else -> {
-                0.0
+                0
             }
 
         }
@@ -127,6 +150,10 @@ class MainActivity : AppCompatActivity() {
             inputText(input_1)
             back(input_1)
         }
+        input_2.setOnClickListener{
+            back(input_2)
+        }
+
 
         btn_clear.setOnClickListener {
             input_1.text.clear()
@@ -142,15 +169,25 @@ class MainActivity : AppCompatActivity() {
             if (answer.text.toString().isNotEmpty()){
                 input_1.setText(answer.text)
                 answer.text=""
+            }else if(input_1.text.isEmpty()){
+                input_1.setText("0")
+                inputText(input_2)
+                back(input_2)
             }
             inputText(input_2)
             back(input_2)
+
+
         }
         btn_minus.setOnClickListener{
             setTextFieldsSym("-")
             if (answer.text.toString().isNotEmpty()){
                 input_1.setText(answer.text)
                 answer.text=""
+            }else if(input_1.text.isEmpty()){
+                input_1.setText("0")
+                inputText(input_2)
+                back(input_2)
             }
             inputText(input_2)
             back(input_2)
@@ -160,6 +197,10 @@ class MainActivity : AppCompatActivity() {
             if (answer.text.toString().isNotEmpty()){
                 input_1.setText(answer.text)
                 answer.text=""
+            }else if(input_1.text.isEmpty()){
+                input_1.setText("0")
+                inputText(input_2)
+                back(input_2)
             }
             inputText(input_2)
             back(input_2)
@@ -169,16 +210,29 @@ class MainActivity : AppCompatActivity() {
             if (answer.text.toString().isNotEmpty()){
                 input_1.setText(answer.text)
                 answer.text=""
+            }else if(input_1.text.isEmpty()){
+                input_1.setText("0")
+                inputText(input_2)
+                back(input_2)
             }
             inputText(input_2)
             back(input_2)
         }
 
         equal_btn.setOnClickListener{
-            answer.text = calculateResult(symbol.text.toString()).toString()
-            input_1.text.clear()
-            input_2.text.clear()
-            symbol.text = ""
+        try {
+            if (input_2.text.toString() != "0" || input_2.text.toString() != "0.0") {
+                answer.text = calculateResult(symbol.text.toString()).toString()
+                input_1.text.clear()
+                input_2.text.clear()
+                symbol.text = ""
+            }
+        }catch(e: ArithmeticException){
+            Toast.makeText(this, "Деление на 0!", Toast.LENGTH_SHORT).show()
+        }
+
+
+
         }
 
     }
