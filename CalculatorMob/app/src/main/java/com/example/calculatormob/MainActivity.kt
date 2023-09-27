@@ -166,6 +166,7 @@ class MainActivity : AppCompatActivity() {
 
         btn_plus.setOnClickListener{
             setTextFieldsSym("+")
+            input_1.error=null
             if (answer.text.toString().isNotEmpty()){
                 input_1.setText(answer.text)
                 answer.text=""
@@ -174,6 +175,7 @@ class MainActivity : AppCompatActivity() {
                 inputText(input_2)
                 back(input_2)
             }
+
             inputText(input_2)
             back(input_2)
 
@@ -181,6 +183,7 @@ class MainActivity : AppCompatActivity() {
         }
         btn_minus.setOnClickListener{
             setTextFieldsSym("-")
+            input_1.error=null
             if (answer.text.toString().isNotEmpty()){
                 input_1.setText(answer.text)
                 answer.text=""
@@ -194,6 +197,7 @@ class MainActivity : AppCompatActivity() {
         }
         btn_mult.setOnClickListener{
             setTextFieldsSym("*")
+            input_1.error=null
             if (answer.text.toString().isNotEmpty()){
                 input_1.setText(answer.text)
                 answer.text=""
@@ -207,6 +211,7 @@ class MainActivity : AppCompatActivity() {
         }
         btn_divide.setOnClickListener{
             setTextFieldsSym("/")
+            input_1.error=null
             if (answer.text.toString().isNotEmpty()){
                 input_1.setText(answer.text)
                 answer.text=""
@@ -220,16 +225,35 @@ class MainActivity : AppCompatActivity() {
         }
 
         equal_btn.setOnClickListener{
-        try {
-            if (input_2.text.toString() != "0" || input_2.text.toString() != "0.0") {
-                answer.text = calculateResult(symbol.text.toString()).toString()
+            if(input_1.text.toString().isBlank()){
                 input_1.text.clear()
-                input_2.text.clear()
+                answer.text = ""
                 symbol.text = ""
+                input_1.error = "Введите число"
+
             }
-        }catch(e: ArithmeticException){
-            Toast.makeText(this, "Деление на 0!", Toast.LENGTH_SHORT).show()
-        }
+
+            else if(input_2.text.toString().isBlank()){
+                input_2.text.clear()
+                answer.text = ""
+                symbol.text = ""
+                input_2.error = "Введите число"
+
+            }
+
+            else {
+
+                try {
+                    if (input_2.text.toString() != "0" || input_2.text.toString() != "0.0") {
+                        answer.text = calculateResult(symbol.text.toString()).toString()
+                        input_1.text.clear()
+                        input_2.text.clear()
+                        symbol.text = ""
+                    }
+                } catch (e: ArithmeticException) {
+                    Toast.makeText(this, "Деление на 0!", Toast.LENGTH_SHORT).show()
+                }
+            }
 
 
 

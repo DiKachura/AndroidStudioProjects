@@ -15,6 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="15dp"
+        android:focusable="true"
+        android:clickable="true"
         android:layout_weight="1"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,9 +30,9 @@
             android:layout_weight="1"
             android:ellipsize="end"
             android:ems="10"
-            android:focusableInTouchMode="false"
+            android:focusableInTouchMode="true"
             android:gravity="end"
-            android:inputType="text"
+            android:inputType="number|numberDecimal|numberSigned"
             android:singleLine="true"
             tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -47,11 +49,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:clickable="true"
             android:ellipsize="end"
             android:ems="10"
-            android:focusableInTouchMode="false"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:gravity="end"
-            android:inputType="text"
+            android:inputType="number|numberDecimal|numberSigned"
             android:singleLine="true"
             tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
