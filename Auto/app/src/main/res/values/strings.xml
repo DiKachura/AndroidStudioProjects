@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Auto</string>
+    <string name="delete">Удалить</string>
+    <string name="add">Добавить</string>
+    <string name="edit">Изменить</string>
+    <string name="color">Цвет</string>
+    <string name="mileage">Пробег</string>
+    <string name="name">Марка</string>
+    <string name="power">Мощность</string>
+    <string name="price">Цена</string>
+    <string name="save">Сохранить</string>
+</resources>
