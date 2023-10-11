@@ -19,43 +19,48 @@ class EditActivity : AppCompatActivity() {
 
     private fun validate_Fields(): Boolean {
         var isValid = true
-        if (name.text.isNullOrBlank()) {
+        if (name.text.isEmpty()) {
             name.error = "Введите марку автомобиля"
             isValid = false
         }
-        else
-        if (mileage.text.isNullOrBlank()) {
-            mileage.error = "Введите пробег"
-            isValid = false
-        }
+        else if(mileage.text.toString()=="0")
+            isValid = true
+
         else if(mileage.text.toString()[0]=='0' && mileage.text.toString()[1]!='.') {
             mileage.error = "Неверный формат данных"
             isValid=false
         }
 
-        else
-        if (color.text.isNullOrBlank()) {
+        else if (mileage.text.isEmpty()) {
+            mileage.error = "Введите пробег"
+            isValid = false
+        }
+
+        else if (color.text.isEmpty()) {
             color.error = "Введите цвет"
             isValid = false
         }
-        else
-        if (power.text.isNullOrBlank()) {
+        else if(power.text.toString()=="0")
+            isValid = true
+        else if(power.text.toString()[0]=='0' && power.text.toString()[1]!='.') {
+            power.error = "Неверный формат данных"
+            isValid=false
+        }
+        else if (power.text.isEmpty()) {
             power.error = "Введите мощность"
             isValid = false
         }
-        else if(mileage.text.toString()[0]=='0' && mileage.text.toString()[1]!='.') {
-            mileage.error = "Неверный формат данных"
+        else if(price.text.toString()=="0")
+            isValid = true
+        else if(price.text.toString()[0]=='0' && price.text.toString()[1]!='.') {
+            price.error = "Неверный формат данных"
             isValid=false
         }
-        else
-        if (price.text.isNullOrBlank()) {
+        else if (price.text.isEmpty()) {
             price.error = "Введите цену"
             isValid = false
         }
-        else if(mileage.text.toString()[0]=='0' && mileage.text.toString()[1]!='.') {
-            mileage.error = "Неверный формат данных"
-            isValid=false
-        }
+
         return isValid
     }
     override fun onCreate(savedInstanceState: Bundle?) {
