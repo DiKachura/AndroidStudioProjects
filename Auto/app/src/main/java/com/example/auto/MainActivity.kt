@@ -1,5 +1,6 @@
 package com.example.auto
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var btnEdit : Button
     lateinit var btnAdd : Button
     lateinit var btnDelete : Button
-    lateinit var name : TextView
+    lateinit var tvName : TextView
     lateinit var mileage : TextView
     lateinit var color : TextView
     lateinit var power : TextView
@@ -52,13 +53,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
+//    private fun updateCars() {
+////        tvName.text = "Марка\n" + viewModel.carName + "\nПробег\n" + viewModel.carMileage + "\nЦвет\n" + viewModel.carColor+
+////                "\nМощность\n" + viewModel.carPower + "\nЦена\n" + viewModel.carPrice
+//        for(i in viewModel.carBank) {
+//            tvName.text = viewModel.carBank.toString()
+//        }
+//    }
+
     private fun updateCars() {
-        name.text = viewModel.carName
-        mileage.text = viewModel.carMileage
-        mileage.text = viewModel.carMileage
-        power.text = viewModel.carPower
-        color.text = viewModel.carColor
-        price.text = viewModel.carPrice
+        tvName.text = viewModel.toString()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,11 +74,8 @@ class MainActivity : AppCompatActivity() {
         btnDelete = findViewById(R.id.btnDelete)
         btnPrev=findViewById(R.id.btnPrev)
         btnNext=findViewById(R.id.btnNext)
-        name = findViewById(R.id.name)
-        mileage = findViewById(R.id.mileage)
-        color = findViewById(R.id.color)
-        power = findViewById(R.id.power)
-        price = findViewById(R.id.price)
+        tvName=findViewById(R.id.tvName)
+
 
 
         btnAdd.setOnClickListener{
@@ -84,11 +86,11 @@ class MainActivity : AppCompatActivity() {
         btnEdit.setOnClickListener {
             if (viewModel.ListSize() != 0) {
                 val intent = Intent(this, EditActivity::class.java)
-                intent.putExtra("name", name.text.toString())
-                intent.putExtra("mileage", mileage.text.toString())
-                intent.putExtra("color", color.text.toString())
-                intent.putExtra("power", power.text.toString())
-                intent.putExtra("price", price.text.toString())
+                intent.putExtra("name", viewModel.carName)
+                intent.putExtra("mileage", viewModel.carMileage)
+                intent.putExtra("color", viewModel.carColor)
+                intent.putExtra("power", viewModel.carPower)
+                intent.putExtra("price", viewModel.carPrice)
                 editCarLauncher.launch(intent)
             }
 

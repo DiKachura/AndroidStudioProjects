@@ -6,7 +6,7 @@ import com.example.auto.data.CarParameters
 
 class AutoModel: ViewModel() {
     //val carBank: MutableList<CarParameters> = mutableListOf()
-    private val carBank = mutableListOf<CarParameters>()
+    val carBank = mutableListOf<CarParameters>()
 
     var currentIndex=-1
 
@@ -86,5 +86,8 @@ class AutoModel: ViewModel() {
                 currentIndex %= carBank.size
             }
         }
+    }
+    override fun toString(): String {
+        return "Марка\n$carName\nПробег\n$carMileage\nЦвет\n$carColor\nМощность\n$carPower\nЦена\n$carPrice"
     }
 }

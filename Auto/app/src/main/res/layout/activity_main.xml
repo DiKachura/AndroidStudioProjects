@@ -21,67 +21,9 @@
         <TextView
             android:id="@+id/tvName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/name"
+            android:layout_height="match_parent"
             android:textSize="14sp"
             android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/tvMileage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/mileage"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/mileage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/tvColor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/color"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/color"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/tvPower"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/power"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/power"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/tvPrice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/price"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

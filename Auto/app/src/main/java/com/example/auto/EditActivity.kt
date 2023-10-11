@@ -16,6 +16,48 @@ class EditActivity : AppCompatActivity() {
     lateinit var color : EditText
     lateinit var power : EditText
     lateinit var price : EditText
+
+    private fun validate_Fields(): Boolean {
+        var isValid = true
+        if (name.text.isNullOrBlank()) {
+            name.error = "Введите марку автомобиля"
+            isValid = false
+        }
+        else
+        if (mileage.text.isNullOrBlank()) {
+            mileage.error = "Введите пробег"
+            isValid = false
+        }
+        else if(mileage.text.toString()[0]=='0' && mileage.text.toString()[1]!='.') {
+            mileage.error = "Неверный формат данных"
+            isValid=false
+        }
+
+        else
+        if (color.text.isNullOrBlank()) {
+            color.error = "Введите цвет"
+            isValid = false
+        }
+        else
+        if (power.text.isNullOrBlank()) {
+            power.error = "Введите мощность"
+            isValid = false
+        }
+        else if(mileage.text.toString()[0]=='0' && mileage.text.toString()[1]!='.') {
+            mileage.error = "Неверный формат данных"
+            isValid=false
+        }
+        else
+        if (price.text.isNullOrBlank()) {
+            price.error = "Введите цену"
+            isValid = false
+        }
+        else if(mileage.text.toString()[0]=='0' && mileage.text.toString()[1]!='.') {
+            mileage.error = "Неверный формат данных"
+            isValid=false
+        }
+        return isValid
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
@@ -36,14 +78,10 @@ class EditActivity : AppCompatActivity() {
 
 
 
+
+
         btnSave.setOnClickListener {
-            if (mileage.text.toString()[0] == '0' && mileage.text.toString()[1] != '.')
-                mileage.error = "Не может начинаться с нуля"
-            else if (power.text.toString()[0] == '0' && power.text.toString()[1] != '.')
-                power.error = "Не может начинаться с нуля"
-            else if (price.text.toString()[0] == '0' && price.text.toString()[1] != '.')
-                price.error = "Не может начинаться с нуля"
-            else if(name.text.toString()!="" && mileage.text.toString()!="" && color.text.toString()!="" && power.text.toString()!="" && price.text.toString()!="") {
+            if (validate_Fields()) {
                 val car = CarParameters(
                     name.text.toString(),
                     mileage.text.toString(),
@@ -51,20 +89,11 @@ class EditActivity : AppCompatActivity() {
                     power.text.toString(),
                     price.text.toString()
                 )
-
-
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent()
                 intent.putExtra("car", car)
                 setResult(Activity.RESULT_OK, intent)
                 finish()
             }
-
-            else if(name.text.toString()=="") name.error = "Введите марку автомобиля!"
-            else if(mileage.text.toString()=="") mileage.error = "Введите пробег автомобиля!"
-            else if(color.text.toString()=="") color.error = "Введите цвет автомобиля!"
-            else if(power.text.toString()=="") power.error = "Введите мощность автомобиля!"
-            else if(price.text.toString()=="") price.error = "Введите цену автомобиля!"
-
         }
 
     }
